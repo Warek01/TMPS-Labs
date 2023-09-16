@@ -137,7 +137,6 @@ void GenerateItems(IShopBuilder shopBuilder) {
         .NewLine()
         .Text("Name = ")
         .Prompt(out string name)
-        .NewLine()
         .Text("Count = ")
         .PromptInt(out count)
         .Text("Price = ")

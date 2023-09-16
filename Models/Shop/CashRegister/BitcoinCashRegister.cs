@@ -1,14 +1,26 @@
-namespace TMPS_Labs.Models.Shop.CashRegister; 
+using TMPS_Labs.Helpers;
+
+namespace TMPS_Labs.Models.Shop.CashRegister;
 
 public class BitcoinCashRegister : CashRegister {
   public override Currency Currency { get; } = Currency.Bitcoin;
 
+  private const double Ratio = 26_413.50d;
+
   public override void Register(double amount) {
-    Console.WriteLine($"0.000757189 bitcoin fee");
-    base.Register(amount - 0.000757189);
+    Printer printer = new();
+
+    printer
+      .NewLine()
+      .Text("    ")
+      .Number(20 / Ratio)
+      .Text(" bitcoin fee")
+      .NewLine();
+    
+    base.Register((amount - 20) / Ratio);
   }
 
   public override double CountUsdEquivalent() {
-    return CurrencyAmount / 26_413.50;
+    return CurrencyAmount * Ratio;
   }
 }
