@@ -1,7 +1,9 @@
-namespace TMPS_Labs.Models; 
+namespace TMPS_Labs.Models;
 
-public static class Sample {
-  public static readonly string[] GameNames = {
+public static class RandomName {
+  private static Random _rand = new();
+
+  private static readonly string[] GameNames = {
     "The Legend of Zelda: Breath of the Wild",
     "The Witcher 3: Wild Hunt",
     "Red Dead Redemption 2",
@@ -24,7 +26,7 @@ public static class Sample {
     "Death Stranding"
   };
 
-  public static readonly string[] PersonNames = {
+  private static readonly string[] PersonNames = {
     "John Smith",
     "Emily Johnson",
     "Michael Williams",
@@ -46,7 +48,7 @@ public static class Sample {
     "Noah Moore"
   };
 
-  public static readonly string[] CpuNames = {
+  private static readonly string[] CpuNames = {
     "Intel Core i9-11900K",
     "AMD Ryzen 9 5950X",
     "Intel Core i7-11700K",
@@ -69,7 +71,7 @@ public static class Sample {
     "AMD Ryzen 9 6900HX"
   };
 
-  public static readonly string[] GpuNames = {
+  private static readonly string[] GpuNames = {
     "NVIDIA GeForce RTX 3090",
     "AMD Radeon RX 6900 XT",
     "NVIDIA GeForce RTX 3080",
@@ -92,7 +94,7 @@ public static class Sample {
     "AMD Radeon RX Vega 56"
   };
 
-  public static readonly string[] SoftwareNames = {
+  private static readonly string[] SoftwareNames = {
     "Microsoft Office",
     "Adobe Photoshop",
     "AutoCAD",
@@ -115,7 +117,7 @@ public static class Sample {
     "Toon Boom Harmony"
   };
 
-  public static readonly string[] RamNames = {
+  private static readonly string[] RamNames = {
     "Corsair Vengeance LPX 16GB DDR4",
     "G.Skill Ripjaws V 32GB DDR4",
     "Kingston HyperX Fury 8GB DDR4",
@@ -138,7 +140,7 @@ public static class Sample {
     "HyperX FURY 8GB DDR4"
   };
 
-  public static readonly string[] MotherboardNames = {
+  private static readonly string[] MotherboardNames = {
     "ASUS ROG Strix B550-F Gaming",
     "MSI MPG B450 TOMAHAWK MAX",
     "GIGABYTE Z590 AORUS ULTRA",
@@ -160,4 +162,12 @@ public static class Sample {
     "GIGABYTE Z390 AORUS PRO WIFI",
     "ASRock B460 Steel Legend"
   };
+
+  public static string RandomPersonName      => PersonNames[_rand.Next(0,      PersonNames.Length)];
+  public static string RandomVideoGameName   => GameNames[_rand.Next(0,        GameNames.Length)];
+  public static string RandomCpuName         => CpuNames[_rand.Next(0,         CpuNames.Length)];
+  public static string RandomGpuName         => GpuNames[_rand.Next(0,         GpuNames.Length)];
+  public static string RandomRamName         => RamNames[_rand.Next(0,         RamNames.Length)];
+  public static string RandomMotherboardName => MotherboardNames[_rand.Next(0, MotherboardNames.Length)];
+  public static string RandomSoftwareName    => SoftwareNames[_rand.Next(0,    SoftwareNames.Length)];
 }

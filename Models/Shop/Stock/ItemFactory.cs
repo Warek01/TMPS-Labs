@@ -1,5 +1,6 @@
-namespace TMPS_Labs.Models.Shop.Stock; 
+namespace TMPS_Labs.Models.Shop.Stock;
 
-public abstract class ItemFactory {
-  public abstract Item CreateItem(Shop shop);
+public abstract class ItemFactory : IItemFactory {
+  public abstract string GenerateRandomName();
+  public abstract IItem  CreateItem();
 }

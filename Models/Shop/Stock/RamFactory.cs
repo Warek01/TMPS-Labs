@@ -1,7 +1,11 @@
 namespace TMPS_Labs.Models.Shop.Stock; 
 
 public class RamFactory : ItemFactory {
-  public override Item CreateItem(Shop shop) {
-    return new Ram(shop);
+  public override string GenerateRandomName() {
+    return RandomName.RandomRamName;
+  }
+  
+  public override IItem CreateItem() {
+    return new Ram();
   }
 }

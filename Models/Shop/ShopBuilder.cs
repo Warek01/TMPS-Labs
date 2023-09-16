@@ -8,8 +8,8 @@ public class ShopBuilder : IShopBuilder {
   private string        _name         = null!;
   private ICashRegister _cashRegister = null!;
 
-  private readonly Dictionary<Item, int> _items     = new();
-  private readonly List<Employee>        _employees = new();
+  private readonly Dictionary<IItem, int> _items     = new();
+  private readonly List<Employee>         _employees = new();
 
   public ShopBuilder() {
     Console.WriteLine("Registering a new shop!");
@@ -20,7 +20,7 @@ public class ShopBuilder : IShopBuilder {
     return this;
   }
 
-  public ShopBuilder AddItems(Item item, int count) {
+  public ShopBuilder AddItem(IItem item, int count) {
     _items[item] = count;
     return this;
   }

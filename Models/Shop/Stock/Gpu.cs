@@ -1,13 +1,15 @@
+using TMPS_Labs.Models.Person;
+
 namespace TMPS_Labs.Models.Shop.Stock;
 
 public class Gpu : Item {
   public override ItemCategory Category { get; } = ItemCategory.Hardware;
 
-  public Gpu(Shop shop) : base(shop, "Undefined", 0) { }
+  public Gpu() : base("Undefined", 0) { }
 
-  public Gpu(Shop shop, string name, double price) : base(shop, name, price) { }
+  public Gpu(string name, double price) : base(name, price) { }
 
-  public override bool Sell(Person.Person to, int count) {
+  public override bool Sell(IPerson to, int count) {
     return true;
   }
 

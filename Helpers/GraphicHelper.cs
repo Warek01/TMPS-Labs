@@ -1,4 +1,4 @@
-namespace TMPS_Labs.Models;
+namespace TMPS_Labs.Helpers;
 
 public static class GraphicHelper {
   public static void ColorPrint(
@@ -92,5 +92,16 @@ public static class GraphicHelper {
           break;
       }
     } while (true);
+  }
+
+  public static void PrintMultiColorText(IEnumerable<KeyValuePair<string, ConsoleColor?>> textList) {
+    foreach (var text in textList) {
+      if (text.Value is not null) {
+        Console.ForegroundColor = text.Value.GetValueOrDefault();
+      }
+
+      Console.Write(text);
+      Console.ResetColor();
+    }
   }
 }

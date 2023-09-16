@@ -1,7 +1,11 @@
 namespace TMPS_Labs.Models.Shop.Stock; 
 
 public class SoftwareFactory : ItemFactory {
-  public override Item CreateItem(Shop shop) {
-    return new Software(shop);
+  public override string GenerateRandomName() {
+    return RandomName.RandomSoftwareName;
+  }
+  
+  public override IItem CreateItem() {
+    return new Software();
   }
 }

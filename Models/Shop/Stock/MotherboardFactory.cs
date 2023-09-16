@@ -1,7 +1,11 @@
-namespace TMPS_Labs.Models.Shop.Stock; 
+namespace TMPS_Labs.Models.Shop.Stock;
 
 public class MotherboardFactory : ItemFactory {
-  public override Item CreateItem(Shop shop) {
-    return new Motherboard(shop);
+  public override string GenerateRandomName() {
+    return RandomName.RandomMotherboardName;
+  }
+
+  public override IItem CreateItem() {
+    return new Motherboard();
   }
 }

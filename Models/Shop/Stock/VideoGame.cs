@@ -1,3 +1,6 @@
+using TMPS_Labs.Helpers;
+using TMPS_Labs.Models.Person;
+
 namespace TMPS_Labs.Models.Shop.Stock;
 
 public class VideoGame : Item {
@@ -5,13 +8,13 @@ public class VideoGame : Item {
 
   public int FromAge { get; set; }
 
-  public VideoGame(Shop shop) : base(shop, "Undefined", 0) { }
+  public VideoGame() : base("Undefined", 0) { }
 
-  public VideoGame(Shop shop, string name, double price, int fromAge) : base(shop, name, price) {
+  public VideoGame(string name, double price, int fromAge) : base(name, price) {
     FromAge = fromAge;
   }
 
-  public override bool Sell(Person.Person to, int count) {
+  public override bool Sell(IPerson to, int count) {
     if (to.Age < FromAge) {
       GraphicHelper.ColorPrint($"{to.Name} is too young to buy {Name} ({count} pcs.)");
       return false;
