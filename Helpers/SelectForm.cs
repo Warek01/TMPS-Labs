@@ -5,7 +5,7 @@ public class SelectForm<T> where T : notnull {
 
   private string       _title = null!;
   private bool         _isVertical;
-  private int          _width = 16;
+  private int          _width = 18;
   private ConsoleColor _fg    = ConsoleColor.Black;
   private ConsoleColor _bg    = ConsoleColor.DarkCyan;
   private int          _defaultSelectedIndex;

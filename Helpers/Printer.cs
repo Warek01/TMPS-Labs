@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace TMPS_Labs.Helpers;
 
 public class Printer {
@@ -15,7 +17,12 @@ public class Printer {
   }
 
   public Printer Number(double number, ConsoleColor fg = ConsoleColor.Red, ConsoleColor? bg = null) {
-    Print(number.ToString(), fg, bg);
+    Print(number.ToString(CultureInfo.InvariantCulture), fg, bg);
+    return this;
+  }
+  
+  public Printer Currency(double number, ConsoleColor fg = ConsoleColor.Red, ConsoleColor? bg = null) {
+    Print(number.ToString("C2"), fg, bg);
     return this;
   }
 

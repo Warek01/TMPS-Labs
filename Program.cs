@@ -14,33 +14,25 @@ SelectCashRegister(shopBuilder);
 GenerateEmployees(shopBuilder);
 GenerateItems(shopBuilder);
 
-IShop      shop       = shopBuilder.Build();
-Simulation simulation = new(shop);
+IShop       shop       = shopBuilder.Build();
+ISimulation simulation = new Simulation(shop);
 simulation.Run();
 
 return;
 
 void SelectCashRegister(IShopBuilder shopBuilder) {
-  bool isCash = GraphicHelper.SelectMultipleChoice<bool>(
-    new List<KeyValuePair<bool, string>>(
-      new[] {
-        new KeyValuePair<bool, string>(true,  "Cash"),
-        new KeyValuePair<bool, string>(false, "Credit card"),
-      }
-    ),
-    title: "How will the shop accept currency?"
-  );
+  bool isCash = new SelectForm<bool>()
+                .Title("How will the shop accept currency?")
+                .AddOption(true,  "Cash")
+                .AddOption(false, "Credit card")
+                .Render();
 
-  Currency currency = GraphicHelper.SelectMultipleChoice<Currency>(
-    new List<KeyValuePair<Currency, string>>(
-      new[] {
-        new KeyValuePair<Currency, string>(Currency.Dollar,      "Dollars"),
-        new KeyValuePair<Currency, string>(Currency.MoldovanLeu, "Moldovan leis"),
-        new KeyValuePair<Currency, string>(Currency.Bitcoin,     "Bitcoins"),
-      }
-    ),
-    title: "What currency will shop accept?"
-  );
+  Currency currency = new SelectForm<Currency>()
+                      .Title("What currency will shop accept?")
+                      .AddOption(Currency.Dollar,      "Dollars")
+                      .AddOption(Currency.Bitcoin,     "Bitcoins")
+                      .AddOption(Currency.MoldovanLeu, "Moldovan leis")
+                      .Render();
 
   ICashRegisterFactory cashRegisterFactory = currency switch {
     Currency.Dollar      => new DollarCashRegisterFactory(),
@@ -83,35 +75,59 @@ void SelectShopName(IShopBuilder shopBuilder) {
 }
 
 void GenerateItems(IShopBuilder shopBuilder) {
-  ConsoleKeyInfo keyInfo;
+  bool isFullRandom = new SelectForm<bool>()
+                      .Title("Would you like to randomize products or insert them manually?")
+                      .AddOption(true,  "Full random")
+                      .AddOption(false, "All manually")
+                      .Render();
 
+  if (isFullRandom) {
+    IItemFactory[] allFactories = {
+      new CpuFactory(),
+      new GpuFactory(),
+      new RamFactory(),
+      new MotherboardFactory(),
+      new SoftwareFactory(),
+      new VideoGameFactory(),
+    };
+
+    foreach (IItemFactory factory in allFactories) {
+      for (int i = 0; i < random.Next(1, 10); i++) {
+        IItem item = factory.CreateItem();
+        item.Name  = factory.GenerateRandomName();
+        item.Price = random.Next(20, 1000);
+        int count = random.Next(1, 50);
+
+        shopBuilder.AddItem(item, count);
+      }
+    }
+
+    return;
+  }
+
+  ConsoleKeyInfo keyInfo;
   do {
     Console.Clear();
     IItem item;
+    IItemFactory factory = new SelectForm<IItemFactory>()
+                           .Title("Select a product")
+                           .Vertical()
+                           .Width(20)
+                           .AddOption(new CpuFactory(),         "CPU")
+                           .AddOption(new GpuFactory(),         "GPU")
+                           .AddOption(new MotherboardFactory(), "Motherboard")
+                           .AddOption(new RamFactory(),         "RAM")
+                           .AddOption(new SoftwareFactory(),    "Software")
+                           .AddOption(new VideoGameFactory(),   "Video Game")
+                           .Render();
 
-    SelectForm<IItemFactory> factoryForm = new();
-    factoryForm
-      .Title("Select a product")
-      .Vertical()
-      .Width(20)
-      .AddOption(new CpuFactory(),         "CPU")
-      .AddOption(new GpuFactory(),         "GPU")
-      .AddOption(new MotherboardFactory(), "Motherboard")
-      .AddOption(new RamFactory(),         "RAM")
-      .AddOption(new SoftwareFactory(),    "Software")
-      .AddOption(new VideoGameFactory(),   "Video Game");
-
-    IItemFactory factory = factoryForm.Render();
     item = factory.CreateItem();
-
-    SelectForm<bool> isManualForm = new();
-    isManualForm
-      .Title("How to insert the product?")
-      .Horizontal()
-      .AddOption(false, "Random")
-      .AddOption(true,  "manual");
-
-    bool isManual = isManualForm.Render();
+    bool isManual = new SelectForm<bool>()
+                    .Title("How to insert the product?")
+                    .Horizontal()
+                    .AddOption(false, "Random")
+                    .AddOption(true,  "Manual")
+                    .Render();
 
     int count;
 

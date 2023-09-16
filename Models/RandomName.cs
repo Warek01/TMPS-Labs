@@ -163,6 +163,30 @@ public static class RandomName {
     "ASRock B460 Steel Legend"
   };
 
+  private static readonly string[] JobNames = {
+    "Software Developer",
+    "Data Scientist",
+    "Registered Nurse",
+    "Marketing Manager",
+    "Accountant",
+    "Mechanical Engineer",
+    "Graphic Designer",
+    "Financial Analyst",
+    "Teacher",
+    "Project Manager",
+    "Dental Hygienist",
+    "Civil Engineer",
+    "Human Resources Manager",
+    "Pharmacist",
+    "Physical Therapist",
+    "Electrical Engineer",
+    "Web Developer",
+    "Nurse Practitioner",
+    "Operations Manager",
+    "Lawyer",
+    "Unemployeed"
+  };
+
   public static string RandomPersonName      => PersonNames[_rand.Next(0,      PersonNames.Length)];
   public static string RandomVideoGameName   => GameNames[_rand.Next(0,        GameNames.Length)];
   public static string RandomCpuName         => CpuNames[_rand.Next(0,         CpuNames.Length)];
@@ -170,4 +194,5 @@ public static class RandomName {
   public static string RandomRamName         => RamNames[_rand.Next(0,         RamNames.Length)];
   public static string RandomMotherboardName => MotherboardNames[_rand.Next(0, MotherboardNames.Length)];
   public static string RandomSoftwareName    => SoftwareNames[_rand.Next(0,    SoftwareNames.Length)];
+  public static string RandomJobName         => JobNames[_rand.Next(0,         JobNames.Length)];
 }

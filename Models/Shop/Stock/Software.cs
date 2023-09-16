@@ -3,7 +3,7 @@ using TMPS_Labs.Models.Person;
 namespace TMPS_Labs.Models.Shop.Stock;
 
 public class Software : Item {
-  public override ItemCategory Category { get; } = ItemCategory.Hardware;
+  public override ItemCategory Category { get; } = ItemCategory.Software;
 
   public Software() : base("Undefined", 0) { }
 
