@@ -9,7 +9,7 @@ public class ShopBuilder : IShopBuilder {
   private ICashRegister _cashRegister = null!;
 
   private readonly Dictionary<IItem, int> _items     = new();
-  private readonly List<Employee>         _employees = new();
+  private readonly List<IPerson>          _employees = new();
 
   public ShopBuilder() {
     Console.WriteLine("Registering a new shop!");
@@ -25,7 +25,7 @@ public class ShopBuilder : IShopBuilder {
     return this;
   }
 
-  public ShopBuilder AddEmployee(Employee employee) {
+  public ShopBuilder AddEmployee(IPerson employee) {
     _employees.Add(employee);
     return this;
   }

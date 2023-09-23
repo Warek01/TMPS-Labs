@@ -7,7 +7,7 @@ namespace TMPS_Labs.Models.Shop;
 public interface IShopBuilder {
   ShopBuilder SetName(string                name);
   ShopBuilder AddItem(IItem                 item, int count);
-  ShopBuilder AddEmployee(Employee          employee);
+  ShopBuilder AddEmployee(IPerson           employee);
   ShopBuilder SetCashRegister(ICashRegister cashRegister);
   Shop        Build();
 }

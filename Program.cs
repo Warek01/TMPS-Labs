@@ -55,13 +55,15 @@ void GenerateEmployees(IShopBuilder shopBuilder) {
 
   int nr = Convert.ToInt32(Console.ReadLine()!);
 
+  IPerson employee = new Employee {
+    Job = "Employee"
+  };
+
   for (int i = 0; i < nr; i++) {
-    Employee employee = new() {
-      Age  = random.Next(18, 60),
-      Name = RandomName.RandomPersonName,
-      Job  = "Employee"
-    };
-    shopBuilder.AddEmployee(employee);
+    IPerson newEmployee = employee.Clone();
+    newEmployee.Age  = random.Next(18, 60);
+    newEmployee.Name = RandomName.RandomPersonName;
+    shopBuilder.AddEmployee(newEmployee);
   }
 }
 

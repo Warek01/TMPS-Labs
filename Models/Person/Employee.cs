@@ -1,7 +1,11 @@
 namespace TMPS_Labs.Models.Person; 
 
 public class Employee : Person {
-  public int ServedPersons;
-  
-  public Employee() {}
+  public override IPerson Clone() {
+    return new Employee {
+      Age = Age,
+      Job = Job,
+      Name = Name
+    };
+  }
 }

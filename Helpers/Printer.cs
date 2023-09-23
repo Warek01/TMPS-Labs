@@ -71,7 +71,7 @@ public class Printer {
   }
 
   public Printer SetFg(ConsoleColor? fg = null) {
-    return new Printer(_fg);
+    return new Printer(fg);
   }
 
   public Printer Clear() {

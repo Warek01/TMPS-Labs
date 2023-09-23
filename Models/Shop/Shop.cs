@@ -6,7 +6,7 @@ namespace TMPS_Labs.Models.Shop;
 
 public class Shop : IShop {
   public string                 Name         { get; }
-  public List<Employee>         Employees    { get; }
+  public List<IPerson>          Employees    { get; }
   public Dictionary<IItem, int> Warehouse    { get; }
   public ICashRegister          CashRegister { get; }
 
@@ -14,7 +14,7 @@ public class Shop : IShop {
 
   public Shop(
     string                 name,
-    List<Employee>         employees,
+    List<IPerson>          employees,
     Dictionary<IItem, int> warehouse,
     ICashRegister          cashRegister
   ) {
@@ -22,13 +22,5 @@ public class Shop : IShop {
     Employees    = employees;
     Warehouse    = warehouse;
     CashRegister = cashRegister;
-  }
-
-  public Employee AllocateEmployee() {
-    throw new NotImplementedException();
-  }
-
-  private Employee HireTemporaryEmployee() {
-    throw new NotImplementedException();
   }
 }
