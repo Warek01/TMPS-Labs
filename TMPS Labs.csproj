@@ -6,5 +6,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>TMPS_Labs</RootNamespace>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="ReportFiles\" />
+    </ItemGroup>
     
 </Project>
