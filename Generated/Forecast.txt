@@ -1,9 +1,9 @@
-10/2/2023 10:00:00 PM Night Europe/Berlin (CEST) Elevation: 85m
-Current temperature: 2E+01 °C
+10/3/2023 7:15:00 AM Day Europe/Berlin (CEST) Elevation: 141m
+Current temperature: 7.9 °C
 
-Wind speed 4.9 km/h at direction 107°
+Wind speed 4.7 km/h at direction 261°
 
-Today's max is 2E+01°C (apparent as 2E+01°C) and min of 1E+01°C (apparent as 1E+01°C)
+Today's max is 15.4°C (apparent as 13.1°C) and min of 7.1°C (apparent as 5.6°C)
 
-Sunrise time: 06:14:00
-Sunset time: 17:55:00
+Sunrise time: 05:35:00
+Sunset time: 17:01:00
