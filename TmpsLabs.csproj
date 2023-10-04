@@ -8,8 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="ReportAssets\" />
-      <Folder Include="Models\" />
       <Folder Include="Utils\" />
     </ItemGroup>
     
