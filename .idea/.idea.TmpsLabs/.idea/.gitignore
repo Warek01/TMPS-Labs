@@ -3,8 +3,8 @@
 /workspace.xml
 # Rider ignored files
 /contentModel.xml
+/.idea.TmpsLabs.iml
 /modules.xml
-/.idea.TMPS Labs.iml
 /projectSettingsUpdater.xml
 # Editor-based HTTP Client requests
 /httpRequests/
