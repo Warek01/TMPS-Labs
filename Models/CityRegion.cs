@@ -1,12 +1,16 @@
 using System.Collections;
+using TmpsLabs.Buildings;
+using TmpsLabs.Events;
 
 namespace TmpsLabs.Models;
 
-using Building = TmpsLabs.Building.Building;
+using EventType = BuildingEvent.EventType;
 
-public class CityRegion : IEnumerable {
-  public readonly  string         Name;
-  private readonly List<Building> _buildings = new();
+public class CityRegion : IEnumerable, IObservable<Building, EventType> {
+  public readonly string Name;
+
+  private readonly List<Building>                    _buildings   = new();
+  private readonly List<Action<Building, EventType>> _subscribers = new();
 
   public CityRegion(string name) {
     Name = name;
@@ -14,6 +18,30 @@ public class CityRegion : IEnumerable {
 
   public void AddBuilding(Building b) {
     _buildings.Add(b);
+
+    foreach (var action in _subscribers) {
+      action(b, EventType.Construct);
+    }
+  }
+
+  public void Populate(Building b, int populationCount) {
+    b.Population = populationCount;
+
+    foreach (var action in _subscribers) {
+      action(b, EventType.Populate);
+    }
+  }
+
+  public void Destroy(Building b) {
+    b.IsWorking = false;
+
+    foreach (var action in _subscribers) {
+      action(b, EventType.Deconstruct);
+    }
+  }
+
+  public void Subscribe(Action<Building, EventType> callback) {
+    _subscribers.Add(callback);
   }
 
   public IEnumerator GetEnumerator() {

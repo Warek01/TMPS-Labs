@@ -1,7 +1,8 @@
-namespace TmpsLabs.Building; 
+namespace TmpsLabs.Buildings;
 
 public abstract class Building {
   public BuildingType Type;
-  public string Name;
-  public int    Population;
+  public string       Name;
+  public int          Population;
+  public bool         IsWorking;
 }

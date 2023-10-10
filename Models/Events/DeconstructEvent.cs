@@ -1,7 +1,12 @@
+using TmpsLabs.Buildings;
+using TmpsLabs.Models;
+
 namespace TmpsLabs.Events;
 
 public class DeconstructEvent : BuildingEvent {
-  public DeconstructEvent(string name) : base(EventType.Deconstruct, name) { }
+  public DeconstructEvent(CityRegion region, Building b) : base(region, EventType.Deconstruct, b.Name) { }
 
-  public override void Execute() { }
+  public override void Execute() {
+    Region.Destroy(Building);
+  }
 }

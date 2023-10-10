@@ -1,3 +1,6 @@
+using TmpsLabs.Buildings;
+using TmpsLabs.Models;
+
 namespace TmpsLabs.Events;
 
 public abstract class BuildingEvent : IBuildEvent {
@@ -8,16 +11,27 @@ public abstract class BuildingEvent : IBuildEvent {
   }
 
   public EventType Type;
-  public string    Name;
-  public int?      Population;
 
-  protected BuildingEvent(EventType type, string name) {
-    Type = type;
-    Name = name;
+  protected readonly string     Name;
+  protected readonly int        Population;
+  protected readonly CityRegion Region;
+  protected readonly Building   Building;
+
+  protected BuildingEvent(CityRegion region, EventType type, string name) {
+    Type   = type;
+    Name   = name;
+    Region = region;
   }
 
-  protected BuildingEvent(EventType type, string name, int population) : this(type, name) {
+  protected BuildingEvent(
+      CityRegion region,
+      EventType  type,
+      string     name,
+      int        population,
+      Building   building
+  ) : this(region, type, name) {
     Population = population;
+    Building   = building;
   }
 
   public abstract void Execute();

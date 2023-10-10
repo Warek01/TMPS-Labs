@@ -1,4 +1,4 @@
-namespace TmpsLabs.Building;
+namespace TmpsLabs.Buildings;
 
 public class Hospital : Building {
   public Hospital() {
