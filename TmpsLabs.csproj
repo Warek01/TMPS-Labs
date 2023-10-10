@@ -6,9 +6,5 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>TmpsLabs</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="Utils\" />
-    </ItemGroup>
     
 </Project>

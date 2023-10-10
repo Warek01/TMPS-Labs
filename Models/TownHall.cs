@@ -4,7 +4,7 @@ using TmpsLabs.Events;
 namespace TmpsLabs.Models;
 
 public static class TownHall {
-  private static readonly List<string> _streetNames = new() {
+  private static readonly List<string> StreetNames = new() {
       "Main Street",
       "Elm Street",
       "Maple Avenue",
@@ -19,11 +19,11 @@ public static class TownHall {
       "Cypress Drive"
   };
 
-  private static string _randomStreetName =>
-      _streetNames[new Random().Next(_streetNames.Count)];
+  private static string RandomStreetName =>
+      StreetNames[new Random().Next(StreetNames.Count)];
 
   public static void Build(CityRegion region) {
-    BuildingEvent buildingEvent = new ConstructEvent(region, _randomStreetName);
+    BuildingEvent buildingEvent = new ConstructEvent(region, RandomStreetName);
     buildingEvent.Execute();
   }
 
